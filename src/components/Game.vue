@@ -25,6 +25,10 @@ const addPlayer = () => {
 };
 
 const updateActivePlayer = () => {
+    if (players.length === 1) {
+        return false;
+    }
+    
     const activePlayerIndex = players.findIndex((player) => player.active === true);
 
     if (activePlayerIndex === players.length - 1) {
