@@ -3,5 +3,9 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-    <RouterView />
+    <q-layout>
+        <q-page-container>
+            <router-view />
+        </q-page-container>
+    </q-layout>
 </template>

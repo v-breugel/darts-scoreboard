@@ -50,37 +50,22 @@ const setPlayerActive = () => {
 </script>
 
 <template>
-    <div class="card" :class="{ 'is-active': active }">
-        <div>Name: {{ name }}</div>
-        <div>Remaining: {{ remaining }}</div>
-        <div>Turns: {{ turns }}</div>
-        <form @submit.prevent="updateScore">
-            <input
-                type="text"
-                placeholder="Enter your score"
-                v-model="score"
-                ref="scoreInputElement"
-            />
-            <button type="submit" :disabled="!score || !active">Submit score</button>
-        </form>
-    </div>
+    <q-card :class="{ 'is-active': active }">
+        <q-card-section>
+            <div>Name: {{ name }}</div>
+            <div>Remaining: {{ remaining }}</div>
+            <div>Turns: {{ turns }}</div>
+            <q-form @submit.prevent="updateScore">
+                <q-input
+                    type="text"
+                    placeholder="Enter your score"
+                    v-model="score"
+                    ref="scoreInputElement"
+                />
+                <q-btn type="submit" :disabled="!score || !active">Submit score</q-btn>
+            </q-form>
+        </q-card-section>
+    </q-card>
 </template>
 
-<style lang="scss" scoped>
-.card {
-    flex: 1;
-    max-width: 300px;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    border: 3px solid #ccc;
-
-    > * {
-        margin-bottom: 10px;
-    }
-
-    &.is-active {
-        border-color: black;
-    }
-}
-</style>
+<style lang="scss" scoped></style>
