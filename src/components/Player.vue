@@ -50,7 +50,7 @@ const setPlayerActive = () => {
 </script>
 
 <template>
-    <q-card :class="{ 'is-active': active }">
+    <q-card class="player-card" :class="{ 'is-active': active }" bordered>
         <q-card-section>
             <div>Name: {{ name }}</div>
             <div>Remaining: {{ remaining }}</div>
@@ -58,14 +58,22 @@ const setPlayerActive = () => {
             <q-form @submit.prevent="updateScore">
                 <q-input
                     type="text"
+                    outlined
+                    label="Score"
                     placeholder="Enter your score"
                     v-model="score"
                     ref="scoreInputElement"
                 />
-                <q-btn type="submit" :disabled="!score || !active">Submit score</q-btn>
             </q-form>
         </q-card-section>
+        <q-card-actions align="right">
+            <q-btn type="submit" @click="updateScore" :disabled="!score || !active" color="primary" label="Submit score"/>
+        </q-card-actions>
     </q-card>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.player-card {
+
+}
+</style>

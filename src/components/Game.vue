@@ -47,18 +47,19 @@ const openAddPlayerDialog = () => {
 
 <template>
     <q-page padding>
-        <div class="row">
-            <Player
-                v-for="player in players"
-                :key="player.name"
-                v-bind="player"
-                @score-submitted="updateActivePlayer"
-            />
-            <q-card>
-                <q-card-section>
-                    <q-btn @click="openAddPlayerDialog">Add player</q-btn></q-card-section
-                >
-            </q-card>
+        <div class="page-container">
+            <div class="row q-col-gutter-md">
+                <div class="col-4" v-for="player in players" :key="player.name">
+                    <Player v-bind="player" @score-submitted="updateActivePlayer" />
+                </div>
+                <div class="col-4">
+                    <q-card class="add-player-card">
+                        <q-card-section>
+                            <q-btn color="primary" @click="openAddPlayerDialog" label="Add player"
+                        /></q-card-section>
+                    </q-card>
+                </div>
+            </div>
         </div>
     </q-page>
 
@@ -69,12 +70,32 @@ const openAddPlayerDialog = () => {
             </q-card-section>
             <q-card-section class="q-pt-none">
                 <q-form @submit.prevent="addPlayer">
-                    <q-input type="text" v-model="newPlayerName" />
-                    <q-btn type="submit" :disabled="!newPlayerName">Add Player</q-btn>
+                    <q-input
+                        outlined
+                        type="text"
+                        v-model="newPlayerName"
+                        class="q-mb-md"
+                        label="Name"
+                    />
+                    <q-btn
+                        color="primary"
+                        type="submit"
+                        :disabled="!newPlayerName"
+                        label="Add player"
+                    />
                 </q-form>
             </q-card-section>
         </q-card>
     </q-dialog>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.add-player-card {
+    height: 100%;
+}
+</style>
